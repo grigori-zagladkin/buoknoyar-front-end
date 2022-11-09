@@ -1,6 +1,10 @@
 export interface IService {
     id: number;
-    name: string;
+    title: string;
     description: string;
     image: string;
+}
+
+export interface IServiceState {
+    services: Array<IService>;
 }

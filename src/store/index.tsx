@@ -1,11 +1,30 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
-const rootReducer = combineReducers({});
+import { CategoriesAPI } from "./services/CategoriesAPI";
+import { ItemsAPI } from "./services/ItemsAPI";
+import { ServiceAPI } from "./services/ServiceAPI";
+import BasketSlice from "./slices/BasketSlice";
+import CategorySlice from "./slices/CategorySlice";
+import ItemsSlice from "./slices/ItemsSlice";
+import ServiceSlice from "./slices/ServiceSlice";
 
-const setupStore = () => {
+const rootReducer = combineReducers({
+    category: CategorySlice,
+    item: ItemsSlice,
+    services: ServiceSlice,
+    basket: BasketSlice,
+    [ItemsAPI.reducerPath]: ItemsAPI.reducer,
+    [ServiceAPI.reducerPath]: ServiceAPI.reducer,
+    [CategoriesAPI.reducerPath]: CategoriesAPI.reducer,
+});
+
+const middlewares = [ItemsAPI.middleware, ServiceAPI.middleware, CategoriesAPI.middleware];
+
+export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(...middlewares),
     });
 };
 

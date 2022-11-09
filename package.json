@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.11",
     "@chakra-ui/react": "^2.3.6",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
+    "@headlessui/react": "^1.7.4",
     "@reduxjs/toolkit": "^1.8.6",
     "@types/react-redux": "^7.1.24",
     "@types/react-router-dom": "^5.3.3",
